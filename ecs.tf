@@ -18,14 +18,19 @@ resource "alicloud_eip" "test" {
   internet_charge_type = "PayByTraffic"
 }
 
+data "alicloud_images" "debian_10" {
+  owners = "self"
+  name_regex = "^debian-10$"
+}
+
 resource "alicloud_instance" "test" {
   resource_group_id = var.rg
   availability_zone = "cn-hangzhou-h"
   security_groups   = [alicloud_security_group.test.id]
 
   instance_type    = "ecs.t5-lc2m1.nano"
-  system_disk_size = 40
-  image_id         = "ubuntu_18_04_64_20G_alibase_20190624.vhd"
+  system_disk_size = 20
+  image_id         = data.alicloud_images.debian_10.images.0.id
   instance_name    = "test"
   vswitch_id       = alicloud_vswitch.test.id
   key_name         = alicloud_key_pair.test.key_name
