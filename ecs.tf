@@ -29,6 +29,8 @@ resource "alicloud_instance" "test" {
   security_groups   = [alicloud_security_group.test.id]
 
   instance_type    = "ecs.t5-lc2m1.nano"
+  # 用自定义镜像第一次建的时候，需要设成 20，否则起不来，建好之后可以改，重启生效
+  # 阿里云的bug，已反馈
   system_disk_size = 20
   image_id         = data.alicloud_images.debian_10.images.0.id
   instance_name    = "test"
