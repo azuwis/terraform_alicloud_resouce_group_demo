@@ -1,3 +1,3 @@
-variable "rg" {
-  default = "rg-..."
+variable "account" {
+  default = "..."
 }

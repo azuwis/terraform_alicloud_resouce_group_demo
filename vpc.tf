@@ -1,7 +1,6 @@
 resource "alicloud_vpc" "test" {
-  name              = "test"
-  cidr_block        = "172.16.0.0/12"
-  resource_group_id = var.rg
+  name       = "test"
+  cidr_block = "172.16.0.0/12"
 }
 
 resource "alicloud_vswitch" "test" {
